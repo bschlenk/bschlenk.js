@@ -1,4 +1,4 @@
-import { areClose } from './utils.js'
+import { areClose } from '@bschlenk/util'
 import { type Vector } from './vector.js'
 
 interface MatrixMut {
@@ -26,7 +26,7 @@ export function mat(
   yx: number,
   yy: number,
   dx: number,
-  dy: number,
+  dy: number
 ): Matrix {
   return { xx, xy, yx, yy, dx, dy }
 }
@@ -72,7 +72,7 @@ export function invert(m: Matrix) {
     -m.yx / det,
     m.xx / det,
     (m.yx * m.dy - m.yy * m.dx) / det,
-    (m.xy * m.dx - m.xx * m.dy) / det,
+    (m.xy * m.dx - m.xx * m.dy) / det
   )
 }
 
@@ -130,7 +130,7 @@ function mult2(a: Matrix, b: Matrix): Matrix {
     a.yx * b.xx + a.yy * b.yx,
     a.yx * b.xy + a.yy * b.yy,
     a.dx * b.xx + a.dy * b.yx + b.dx,
-    a.dx * b.xy + a.dy * b.yy + b.dy,
+    a.dx * b.xy + a.dy * b.yy + b.dy
   )
 }
 

@@ -1,0 +1,25 @@
+{
+  "name": "@bschlenk/vec",
+  "version": "1.0.0",
+  "author": "Brian Schlenker <bschlenk@umich.edu>",
+  "description": "Functional 2d vector library",
+  "license": "MIT",
+  "keywords": [
+    "vector",
+    "2d"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@bschlenk/util": "workspace:*"
+  }
+}

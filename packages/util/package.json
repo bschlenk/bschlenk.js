@@ -1,0 +1,22 @@
+{
+  "name": "@bschlenk/util",
+  "version": "1.0.0",
+  "author": "Brian Schlenker <bschlenk@umich.edu>",
+  "description": "Utility library used by @bschlenk packages",
+  "license": "MIT",
+  "keywords": [
+    "util",
+    "utility"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}
