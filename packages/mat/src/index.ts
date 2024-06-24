@@ -138,6 +138,32 @@ export function invert(m: Matrix) {
 }
 
 /**
+ * Rounds any values in the given matrix that are within `epsilon` of the value
+ * obtained by calling `Math.round` on them.
+ */
+export function round(m: Matrix, epsilon = Number.EPSILON) {
+  const xx = roundEpsilon(m.xx, epsilon)
+  const xy = roundEpsilon(m.xy, epsilon)
+  const yx = roundEpsilon(m.yx, epsilon)
+  const yy = roundEpsilon(m.yy, epsilon)
+  const dx = roundEpsilon(m.dx, epsilon)
+  const dy = roundEpsilon(m.dy, epsilon)
+
+  if (
+    xx === m.xx &&
+    xy === m.xy &&
+    yx === m.yx &&
+    yy === m.yy &&
+    dx === m.dx &&
+    dy === m.dy
+  ) {
+    return m
+  }
+
+  return mat(xx, xy, yx, yy, dx, dy)
+}
+
+/**
  * Transform a point by the given matrix.
  *
  * Essentially converts a "matrix space" point to "world space".
@@ -226,4 +252,13 @@ function mult2(a: Matrix, b: Matrix): Matrix {
 
 function transformAt(m: Matrix, centerX: number, centerY: number): Matrix {
   return mult(translate(centerX, centerY), m, translate(-centerX, -centerY))
+}
+
+/**
+ * Rounds the given value if it is within `epsilon` of the value obtained by
+ * calling `Math.round` on it.
+ */
+function roundEpsilon(value: number, epsilon = Number.EPSILON) {
+  const r = Math.round(value)
+  return Math.abs(value - r) < epsilon ? r : value
 }
