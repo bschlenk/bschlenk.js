@@ -75,6 +75,15 @@ export function rotateDegAt(angle: number, cx: number, cy: number): Matrix {
 }
 
 /**
+ * Determine the rotation of the given matrix.
+ *
+ * This is the angle in radians that the x axis makes with origin.
+ */
+export function getRotation(m: Matrix) {
+  return Math.atan2(m.xy, m.xx)
+}
+
+/**
  * Create a new matrix that scales by the given values. The second argument
  * can be omitted to scale by the same value in both dimensions.
  */
