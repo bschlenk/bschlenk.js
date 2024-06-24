@@ -19,6 +19,7 @@
     "!**/*.ts.map"
   ],
   "scripts": {
+    "prepublishOnly": "pnpm build",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
