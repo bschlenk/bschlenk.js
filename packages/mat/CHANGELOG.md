@@ -1,5 +1,11 @@
 # @bschlenk/mat
 
+## 0.0.2
+
+### Patch Changes
+
+- ac8ac52: add round and getRotation methods
+
 ## 0.0.1
 
 ### Patch Changes
