@@ -16,7 +16,8 @@
   },
   "files": [
     "dist",
-    "!**/*.ts.map"
+    "!**/*.ts.map",
+    "!**/*.test.*"
   ],
   "scripts": {
     "prepublishOnly": "pnpm build",
