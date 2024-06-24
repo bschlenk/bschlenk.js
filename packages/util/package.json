@@ -13,6 +13,10 @@
     ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
+  "files": [
+    "dist",
+    "!**/*.ts.map"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
