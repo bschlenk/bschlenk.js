@@ -1,6 +1,6 @@
 {
   "name": "@bschlenk/vec",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "author": "Brian Schlenker <bschlenk@umich.edu>",
   "description": "Functional 2d vector library",
   "license": "MIT",
