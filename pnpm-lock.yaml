@@ -13,6 +13,9 @@ importers:
       '@bschlenk/util':
         specifier: workspace:*
         version: link:../util
+      '@bschlenk/vec':
+        specifier: workspace:^
+        version: link:../vec
     devDependencies:
       typescript:
         specifier: ^5.4.5

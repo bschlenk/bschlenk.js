@@ -1,12 +1,13 @@
 {
   "name": "bschlenk",
-  "version": "1.0.0",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Brian Schlenker <bschlenk@umich.edu>",
+  "license": "MIT",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "pnpm -r build",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT"
+  }
 }

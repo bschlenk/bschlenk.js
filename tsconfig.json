@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    // build
+    "target": "es2020",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+
+    // output
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    // interop
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+
+    // strictness
+    "strict": true,
+    "skipLibCheck": true
+  }
+}

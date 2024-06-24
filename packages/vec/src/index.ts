@@ -1,4 +1,4 @@
-import { areClose } from './utils.js'
+import { areClose } from '@bschlenk/util'
 
 export interface Vector {
   x: number
@@ -12,19 +12,11 @@ export function vec(x: number, y: number): Vector {
 }
 
 /**
- * Return a vector pointing in the same direction
- * but with the given `magnitude`.
- */
-export function withMagnitude(vec: Vector, magnitude: number) {
-  return scale(normalize(vec), magnitude)
-}
-
-/**
  * Return true if this and other are the same vector.
  * Takes PRECISION into account due to floating point rounding errors.
  */
-export function equals(a: Vector, b: Vector) {
-  return areClose(a.x, b.x) && areClose(a.y, b.y)
+export function equals(a: Vector, b: Vector, epsilon = Number.EPSILON) {
+  return areClose(a.x, b.x, epsilon) && areClose(a.y, b.y, epsilon)
 }
 
 export function scale(vec: Vector, scalar: number) {
@@ -64,10 +56,13 @@ export function angle(vec: Vector) {
 }
 
 /**
- * Returns a vector of magnitude 1, pointing in the original direction.
+ * Returns a vector of magnitude `length`, pointing in the original direction.
+ *
+ * @param vec The vector to normalize.
+ * @param length The length of the new vector. Defaults to 1.
  */
-export function normalize(vec: Vector) {
-  return scale(vec, 1 / magnitude(vec))
+export function normalize(vec: Vector, length = 1) {
+  return scale(vec, length / magnitude(vec))
 }
 
 export function rotate90(vec: Vector) {

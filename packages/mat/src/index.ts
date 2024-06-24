@@ -1,5 +1,5 @@
-import { areClose } from '@bschlenk/util'
-import { type Vector } from './vector.js'
+import { areClose, DEG2RAD } from '@bschlenk/util'
+import type { Vector } from '@bschlenk/vec'
 
 interface MatrixMut {
   xx: number
@@ -15,10 +15,14 @@ interface MatrixMut {
  */
 export type Matrix = Readonly<MatrixMut>
 
+/**
+ * The identity matrix.
+ */
 export const IDENTITY: Matrix = mat(1, 0, 0, 1, 0, 0)
 
 /**
  * Create a new Matrix, passing values in column-major order.
+ * Some reference material may refer to the values as a, b, c, d, e, f.
  */
 export function mat(
   xx: number,
@@ -31,37 +35,85 @@ export function mat(
   return { xx, xy, yx, yy, dx, dy }
 }
 
+/**
+ * Create a new matrix that translates by the given values.
+ */
 export function translate(x: number, y: number): Matrix {
   return mat(1, 0, 0, 1, x, y)
 }
 
+/**
+ * Create a new matrix that rotates by the given angle, in radians.
+ */
 export function rotate(angle: number): Matrix {
   const cos = Math.cos(angle)
   const sin = Math.sin(angle)
   return mat(cos, sin, -sin, cos, 0, 0)
 }
 
-export function rotateAt(angle: number, cx: number, cy: number): Matrix {
-  return transformFrom(rotate(angle), cx, cy)
+/**
+ * Create a new matrix that rotates by the given angle, in degrees.
+ */
+export function rotateDeg(angle: number): Matrix {
+  return rotate(angle * DEG2RAD)
 }
 
+/**
+ * Create a new matrix that rotates by the given angle, in radians,
+ * around the given point.
+ */
+export function rotateAt(angle: number, cx: number, cy: number): Matrix {
+  return transformAt(rotate(angle), cx, cy)
+}
+
+/**
+ * Create a new matrix that rotates by the given angle, in degrees,
+ * around the given point.
+ */
+export function rotateDegAt(angle: number, cx: number, cy: number): Matrix {
+  return rotateAt(angle * DEG2RAD, cx, cy)
+}
+
+/**
+ * Create a new matrix that scales by the given values. The second argument
+ * can be omitted to scale by the same value in both dimensions.
+ */
 export function scale(x: number, y = x): Matrix {
   return mat(x, 0, 0, y, 0, 0)
 }
 
+/**
+ * Create a new matrix that scales by the given values, around the given point.
+ */
 export function scaleAt(x: number, y: number, cx: number, cy: number): Matrix {
-  return transformFrom(scale(x, y), cx, cy)
+  return transformAt(scale(x, y), cx, cy)
 }
 
-export function mult(m: Matrix, ...rest: Matrix[]): Matrix {
-  for (const o of rest) m = mult2(m, o)
+/**
+ * Multiply an arbitrary number of matrices together.
+ */
+export function mult(...matrices: Matrix[]): Matrix {
+  if (matrices.length === 0) return IDENTITY
+
+  let m = matrices[0]
+  for (let i = 1; i < matrices.length; ++i) {
+    m = mult2(m, matrices[i])
+  }
+
   return m
 }
 
+/**
+ * Compute the determinant of the given matrix.
+ */
 export function determinant(m: Matrix) {
   return m.xx * m.yy - m.xy * m.yx
 }
 
+/**
+ * Invert the given matrix, if possible. If the matrix is not invertible,
+ * `null` is returned.
+ */
 export function invert(m: Matrix) {
   const det = determinant(m)
   if (det === 0) return null
@@ -76,16 +128,27 @@ export function invert(m: Matrix) {
   )
 }
 
-export function transformPoint(v: Vector, m: Matrix) {
+/**
+ * Transform a point by the given matrix.
+ *
+ * Essentially converts a "matrix space" point to "world space".
+ */
+export function transformPoint(m: Matrix, v: Vector) {
   return {
     x: m.xx * v.x + m.yx * v.y + m.dx,
     y: m.xy * v.x + m.yy * v.y + m.dy,
   }
 }
 
-export function inverseTransformPoint(v: Vector, m: Matrix) {
+/**
+ * Transform a point by the inverse of the given matrix. If the matrix is not
+ * invertible, returns `null`.
+ *
+ * Essentially converts a "world space" point to "matrix space".
+ */
+export function inverseTransformPoint(m: Matrix, v: Vector) {
   const mi = invert(m)
-  return mi ? transformPoint(v, mi) : null
+  return mi ? transformPoint(mi, v) : null
 }
 
 export function equals(a: Matrix, b: Matrix) {
@@ -123,6 +186,24 @@ export function toSvg(m: Matrix) {
   return `matrix(${m.xx} ${m.xy} ${m.yx} ${m.yy} ${m.dx} ${m.dy})`
 }
 
+/**
+ * Calls the given canvas context's `transform` method
+ * with the values from the given matrix.
+ */
+export function toCanvas(m: Matrix, ctx: CanvasRenderingContext2D) {
+  ctx.transform(m.xx, m.xy, m.yx, m.yy, m.dx, m.dy)
+}
+
+/**
+ * Create a new matrix from an instance of a DOMMatrix object. These can be
+ * obtained by calling `getTransform()` on a canvas context.
+ */
+export function fromDomMatrix(m: DOMMatrixReadOnly): Matrix {
+  return mat(m.a, m.b, m.c, m.d, m.e, m.f)
+}
+
+// Helpers
+
 function mult2(a: Matrix, b: Matrix): Matrix {
   return mat(
     a.xx * b.xx + a.xy * b.yx,
@@ -134,6 +215,6 @@ function mult2(a: Matrix, b: Matrix): Matrix {
   )
 }
 
-function transformFrom(m: Matrix, centerX: number, centerY: number): Matrix {
+function transformAt(m: Matrix, centerX: number, centerY: number): Matrix {
   return mult(translate(centerX, centerY), m, translate(-centerX, -centerY))
 }
