@@ -202,6 +202,13 @@ export function isIdentity(m: Matrix) {
 }
 
 /**
+ * Check if all values in the given matrix are not NaN or Infinity.
+ */
+export function isValid(m: Matrix) {
+  return Object.values(m).every((v) => !Number.isNaN(v) && Number.isFinite(v))
+}
+
+/**
  * Generate a css transform property value from a Matrix.
  *
  * The only difference between this and `toSvg` is that the values
