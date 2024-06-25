@@ -1,5 +1,11 @@
 # @bschlenk/mat
 
+## 0.0.3
+
+### Patch Changes
+
+- 7b0b69c: add isValid method
+
 ## 0.0.2
 
 ### Patch Changes
