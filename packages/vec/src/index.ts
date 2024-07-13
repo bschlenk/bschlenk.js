@@ -5,6 +5,13 @@ export interface Vector {
   y: number
 }
 
+export interface Polar {
+  /* The radius of the vector. */
+  r: number
+  /* The angle of the vector in radians. */
+  a: number
+}
+
 export const ZERO: Vector = { x: 0, y: 0 }
 
 export function vec(x: number, y: number): Vector {
@@ -19,12 +26,12 @@ export function equals(a: Vector, b: Vector, epsilon = Number.EPSILON) {
   return areClose(a.x, b.x, epsilon) && areClose(a.y, b.y, epsilon)
 }
 
-export function scale(vec: Vector, scalar: number) {
-  return { x: vec.x * scalar, y: vec.y * scalar }
+export function scale(v: Vector, scalar: number) {
+  return vec(v.x * scalar, v.y * scalar)
 }
 
 export function add(a: Vector, b: Vector) {
-  return { x: a.x + b.x, y: a.y + b.y }
+  return vec(a.x + b.x, a.y + b.y)
 }
 
 export function addTo(a: Vector, b: Vector) {
@@ -33,7 +40,7 @@ export function addTo(a: Vector, b: Vector) {
 }
 
 export function subtract(a: Vector, b: Vector) {
-  return { x: a.x - b.x, y: a.y - b.y }
+  return vec(a.x - b.x, a.y - b.y)
 }
 
 export function distanceSquared(a: Vector, b: Vector) {
@@ -41,11 +48,11 @@ export function distanceSquared(a: Vector, b: Vector) {
 }
 
 export function distance(a: Vector, b: Vector) {
-  return Math.sqrt(distanceSquared(a, b))
+  return magnitude(subtract(a, b))
 }
 
 export function magnitude(vec: Vector) {
-  return distance(ZERO, vec)
+  return Math.hypot(vec.x, vec.y)
 }
 
 /**
@@ -65,14 +72,14 @@ export function normalize(vec: Vector, length = 1) {
   return scale(vec, length / magnitude(vec))
 }
 
-export function rotate90(vec: Vector) {
-  return { x: -vec.y, y: vec.x }
+export function rotate90(v: Vector) {
+  return vec(-v.y, v.x)
 }
 
-export function rotate(vec: Vector, radians: number) {
-  const x = vec.x * Math.cos(radians) - vec.y * Math.sin(radians)
-  const y = vec.x * Math.sin(radians) + vec.y * Math.cos(radians)
-  return { x, y }
+export function rotate(v: Vector, radians: number) {
+  const x = v.x * Math.cos(radians) - v.y * Math.sin(radians)
+  const y = v.x * Math.sin(radians) + v.y * Math.cos(radians)
+  return vec(x, y)
 }
 
 /**
@@ -88,4 +95,18 @@ export function projectOnto(a: Vector, b: Vector) {
 
 export function projectLength(a: Vector, b: Vector) {
   return dot(a, b) / magnitude(b)
+}
+
+export function fromPolar({ r, a }: Polar): Vector {
+  const x = r * Math.cos(a)
+  const y = r * Math.sin(a)
+
+  return vec(x, y)
+}
+
+export function toPolar(point: Vector): Polar {
+  const r = magnitude(point)
+  const a = angle(point)
+
+  return { r, a }
 }
