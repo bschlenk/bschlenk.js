@@ -197,14 +197,14 @@ export function equals(a: Matrix, b: Matrix, epsilon = Number.EPSILON) {
   )
 }
 
-export function isIdentity(m: Matrix) {
+export function isIdentity(m: Matrix): boolean {
   return equals(m, IDENTITY)
 }
 
 /**
  * Check if all values in the given matrix are not NaN or Infinity.
  */
-export function isValid(m: Matrix) {
+export function isValid(m: Matrix): boolean {
   return Object.values(m).every((v) => !Number.isNaN(v) && Number.isFinite(v))
 }
 
