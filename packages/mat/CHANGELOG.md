@@ -1,5 +1,13 @@
 # @bschlenk/mat
 
+## 0.0.4
+
+### Patch Changes
+
+- 41523d6: equals now accepts epsilon param
+- Updated dependencies [41523d6]
+  - @bschlenk/vec@0.0.2
+
 ## 0.0.3
 
 ### Patch Changes
