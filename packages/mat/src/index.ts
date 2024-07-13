@@ -186,14 +186,14 @@ export function inverseTransformPoint(m: Matrix, v: Vector) {
   return mi ? transformPoint(mi, v) : null
 }
 
-export function equals(a: Matrix, b: Matrix) {
+export function equals(a: Matrix, b: Matrix, epsilon = Number.EPSILON) {
   return (
-    areClose(a.xx, b.xx) &&
-    areClose(a.xy, b.xy) &&
-    areClose(a.yx, b.yx) &&
-    areClose(a.yy, b.yy) &&
-    areClose(a.dx, b.dx) &&
-    areClose(a.dy, b.dy)
+    areClose(a.xx, b.xx, epsilon) &&
+    areClose(a.xy, b.xy, epsilon) &&
+    areClose(a.yx, b.yx, epsilon) &&
+    areClose(a.yy, b.yy, epsilon) &&
+    areClose(a.dx, b.dx, epsilon) &&
+    areClose(a.dy, b.dy, epsilon)
   )
 }
 
