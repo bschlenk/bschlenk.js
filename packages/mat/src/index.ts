@@ -6,8 +6,8 @@ interface MatrixMut {
   xy: number
   yx: number
   yy: number
-  dx: number
-  dy: number
+  tx: number
+  ty: number
 }
 
 /**
@@ -29,10 +29,10 @@ export function mat(
   xy: number,
   yx: number,
   yy: number,
-  dx: number,
-  dy: number
+  tx: number,
+  ty: number
 ): Matrix {
-  return { xx, xy, yx, yy, dx, dy }
+  return { xx, xy, yx, yy, tx, ty }
 }
 
 /**
@@ -132,8 +132,8 @@ export function invert(m: Matrix) {
     -m.xy / det,
     -m.yx / det,
     m.xx / det,
-    (m.yx * m.dy - m.yy * m.dx) / det,
-    (m.xy * m.dx - m.xx * m.dy) / det
+    (m.yx * m.ty - m.yy * m.tx) / det,
+    (m.xy * m.tx - m.xx * m.ty) / det
   )
 }
 
@@ -146,21 +146,21 @@ export function round(m: Matrix, epsilon = Number.EPSILON) {
   const xy = roundEpsilon(m.xy, epsilon)
   const yx = roundEpsilon(m.yx, epsilon)
   const yy = roundEpsilon(m.yy, epsilon)
-  const dx = roundEpsilon(m.dx, epsilon)
-  const dy = roundEpsilon(m.dy, epsilon)
+  const tx = roundEpsilon(m.tx, epsilon)
+  const ty = roundEpsilon(m.ty, epsilon)
 
   if (
     xx === m.xx &&
     xy === m.xy &&
     yx === m.yx &&
     yy === m.yy &&
-    dx === m.dx &&
-    dy === m.dy
+    tx === m.tx &&
+    ty === m.ty
   ) {
     return m
   }
 
-  return mat(xx, xy, yx, yy, dx, dy)
+  return mat(xx, xy, yx, yy, tx, ty)
 }
 
 /**
@@ -170,8 +170,8 @@ export function round(m: Matrix, epsilon = Number.EPSILON) {
  */
 export function transformPoint(m: Matrix, v: Vector) {
   return {
-    x: m.xx * v.x + m.yx * v.y + m.dx,
-    y: m.xy * v.x + m.yy * v.y + m.dy,
+    x: m.xx * v.x + m.yx * v.y + m.tx,
+    y: m.xy * v.x + m.yy * v.y + m.ty,
   }
 }
 
@@ -192,8 +192,8 @@ export function equals(a: Matrix, b: Matrix, epsilon = Number.EPSILON) {
     areClose(a.xy, b.xy, epsilon) &&
     areClose(a.yx, b.yx, epsilon) &&
     areClose(a.yy, b.yy, epsilon) &&
-    areClose(a.dx, b.dx, epsilon) &&
-    areClose(a.dy, b.dy, epsilon)
+    areClose(a.tx, b.tx, epsilon) &&
+    areClose(a.ty, b.ty, epsilon)
   )
 }
 
@@ -215,7 +215,7 @@ export function isValid(m: Matrix): boolean {
  * are separated by commas instead of spaces.
  */
 export function toCss(m: Matrix) {
-  return `matrix(${m.xx}, ${m.xy}, ${m.yx}, ${m.yy}, ${m.dx}, ${m.dy})`
+  return `matrix(${m.xx}, ${m.xy}, ${m.yx}, ${m.yy}, ${m.tx}, ${m.ty})`
 }
 
 /**
@@ -225,7 +225,7 @@ export function toCss(m: Matrix) {
  * are separated by spaces instead of commas.
  */
 export function toSvg(m: Matrix) {
-  return `matrix(${m.xx} ${m.xy} ${m.yx} ${m.yy} ${m.dx} ${m.dy})`
+  return `matrix(${m.xx} ${m.xy} ${m.yx} ${m.yy} ${m.tx} ${m.ty})`
 }
 
 /**
@@ -233,7 +233,7 @@ export function toSvg(m: Matrix) {
  * with the values from the given matrix.
  */
 export function toCanvas(m: Matrix, ctx: CanvasRenderingContext2D) {
-  ctx.transform(m.xx, m.xy, m.yx, m.yy, m.dx, m.dy)
+  ctx.transform(m.xx, m.xy, m.yx, m.yy, m.tx, m.ty)
 }
 
 /**
@@ -252,8 +252,8 @@ function mult2(a: Matrix, b: Matrix): Matrix {
     a.xx * b.xy + a.xy * b.yy,
     a.yx * b.xx + a.yy * b.yx,
     a.yx * b.xy + a.yy * b.yy,
-    a.dx * b.xx + a.dy * b.yx + b.dx,
-    a.dx * b.xy + a.dy * b.yy + b.dy
+    a.tx * b.xx + a.ty * b.yx + b.tx,
+    a.tx * b.xy + a.ty * b.yy + b.ty
   )
 }
 
