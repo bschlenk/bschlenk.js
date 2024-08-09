@@ -1,7 +1,7 @@
 import { areClose, DEG2RAD } from '@bschlenk/util'
 import type { Vector } from '@bschlenk/vec'
 
-interface MatrixMut {
+export interface MatrixMut {
   xx: number
   xy: number
   yx: number
