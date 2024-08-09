@@ -1,5 +1,11 @@
 # @bschlenk/mat
 
+## 0.0.5
+
+### Patch Changes
+
+- 06c96e2: export MatrixMut interface and rename dx/dy to tx/ty
+
 ## 0.0.4
 
 ### Patch Changes
