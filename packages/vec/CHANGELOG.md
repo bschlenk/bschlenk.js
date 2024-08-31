@@ -1,5 +1,11 @@
 # @bschlenk/vec
 
+## 0.0.3
+
+### Patch Changes
+
+- 558194f: new line based methods and improved jsdocs
+
 ## 0.0.2
 
 ### Patch Changes
