@@ -2,11 +2,17 @@ import { areClose, DEG2RAD } from '@bschlenk/util'
 import type { Vector } from '@bschlenk/vec'
 
 export interface MatrixMut {
+  /** The x coordinate of the x vector. */
   xx: number
+  /** The y coordinate of the x vector. */
   xy: number
+  /** The x coordinate of the y vector. */
   yx: number
+  /** The y coordinate of the y vector. */
   yy: number
+  /** The x coordinate of the overall translation.  */
   tx: number
+  /** The y coordinate of the overall translation.  */
   ty: number
 }
 
@@ -22,7 +28,10 @@ export const IDENTITY: Matrix = mat(1, 0, 0, 1, 0, 0)
 
 /**
  * Create a new Matrix, passing values in column-major order.
- * Some reference material may refer to the values as a, b, c, d, e, f.
+
+ * Some reference material may refer to the values as a, b, c, d, e, f,
+ * but I find giving these values more descriptive names makes it easier
+ * to remember what they do.
  */
 export function mat(
   xx: number,
@@ -180,6 +189,10 @@ export function transformPoint(m: Matrix, v: Vector) {
  * invertible, returns `null`.
  *
  * Essentially converts a "world space" point to "matrix space".
+ *
+ * Note that if you have multiple points to inverse transform by the same
+ * matrix, you're better off first storing the inverse matrix and then using
+ * `transformPoint` on each point, to avoid inverting the matrix multiple times.
  */
 export function inverseTransformPoint(m: Matrix, v: Vector) {
   const mi = invert(m)
