@@ -19,6 +19,8 @@ function run() {
     ...(isReact ? ['react'] : []),
   ]
 
+  const fileGlobs = makeFileGlobs(isTypescript, isReact)
+
   console.log(`Detected: ${types.join(', ')}`)
   console.log('Writing eslint.config.js')
 
@@ -26,6 +28,9 @@ function run() {
 import bschlenk, { globals } from '@bschlenk/eslint-config'
 
 export default [
+  { ignores: ['**/dist/'] },
+  { files: [${fileGlobs.map((g) => `'${g}'`).join(', ')}] },
+
   {
     languageOptions: {
 ${
@@ -46,4 +51,22 @@ ${isReact ? '  ...bschlenk.configs.react' : ''}\
 `
 
   fs.writeFileSync('./eslint.config.js', config)
+}
+
+function makeFileGlobs(isTypescript, isReact) {
+  const globs = ['**/*.js']
+
+  if (isReact) {
+    globs.push('**/*.jsx')
+  }
+
+  if (isTypescript) {
+    globs.push('**/*.ts')
+
+    if (isReact) {
+      globs.push('**/*.tsx')
+    }
+  }
+
+  return globs
 }

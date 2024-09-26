@@ -1,3 +1,3 @@
-import bschlenk from '@bschlenk/eslint-config'
+import bschlenk from './index.js'
 
-export default [...bschlenk.configs.javascript]
+export default bschlenk.configs.javascript
