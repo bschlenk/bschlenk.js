@@ -24,11 +24,11 @@
     "build": "tsc",
     "test": "vitest"
   },
-  "devDependencies": {
-    "typescript": "^5.4.5"
-  },
   "dependencies": {
     "@bschlenk/util": "workspace:*",
     "@bschlenk/vec": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
   }
 }
