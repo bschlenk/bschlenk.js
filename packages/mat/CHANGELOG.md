@@ -1,5 +1,13 @@
 # @bschlenk/mat
 
+## 0.0.7
+
+### Patch Changes
+
+- Updated dependencies [01e4055]
+  - @bschlenk/util@0.0.2
+  - @bschlenk/vec@0.0.4
+
 ## 0.0.6
 
 ### Patch Changes
