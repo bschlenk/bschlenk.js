@@ -1,5 +1,11 @@
 # @bschlenk/eslint-config
 
+## 0.0.3
+
+### Patch Changes
+
+- Bump dependencies
+
 ## 0.0.2
 
 ### Patch Changes
