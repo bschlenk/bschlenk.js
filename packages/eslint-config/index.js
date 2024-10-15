@@ -1,4 +1,3 @@
-import { fixupPluginRules } from '@eslint/compat'
 import js from '@eslint/js'
 import prettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
@@ -17,7 +16,7 @@ const base = [
 
   {
     plugins: {
-      import: fixupPluginRules(importPlugin),
+      import: importPlugin,
       'simple-import-sort': simpleImportSort,
     },
 
