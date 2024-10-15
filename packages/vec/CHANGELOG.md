@@ -1,5 +1,11 @@
 # @bschlenk/vec
 
+## 0.0.5
+
+### Patch Changes
+
+- d420213: Add midpoint function
+
 ## 0.0.4
 
 ### Patch Changes
