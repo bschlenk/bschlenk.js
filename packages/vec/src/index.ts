@@ -115,6 +115,11 @@ export function distance(a: Vector, b: Vector) {
   return magnitude(subtract(a, b))
 }
 
+/** Find the point in the middle of a and b. */
+export function midpoint(a: Vector, b: Vector) {
+  return scale(add(a, b), 0.5)
+}
+
 /**
  * Computes the slope-intercept form of a line from `p1` to `p2`.
  * For convenience, passing just `p1` gets the line from the origin.
