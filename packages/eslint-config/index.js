@@ -109,6 +109,7 @@ const react = [
 
   {
     rules: {
+      'react/display-name': 'off',
       'react/jsx-curly-brace-presence': [
         'error',
         { propElementValues: 'always' },
