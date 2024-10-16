@@ -1,5 +1,19 @@
 # @bschlenk/vec
 
+## 0.0.6
+
+### Patch Changes
+
+- [feat]
+
+  - added a `fromElementTopLeft` function
+  - added a `fromWindow` function
+  - renamed the other `from*` methods to be more consistent
+
+  [chore]
+
+  - moved types to a separate folder
+
 ## 0.0.5
 
 ### Patch Changes

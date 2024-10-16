@@ -1,5 +1,12 @@
 # @bschlenk/mat
 
+## 0.0.9
+
+### Patch Changes
+
+- Updated dependencies
+  - @bschlenk/vec@0.0.6
+
 ## 0.0.8
 
 ### Patch Changes

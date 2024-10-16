@@ -1,6 +1,6 @@
 {
   "name": "@bschlenk/mat",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "author": "Brian Schlenker <bschlenk@umich.edu>",
   "description": "Functional affine transform matrix library",
   "license": "MIT",
