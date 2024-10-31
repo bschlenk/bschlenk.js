@@ -1,5 +1,13 @@
 # @bschlenk/mat
 
+## 0.0.10
+
+### Patch Changes
+
+- fix matrix multiplication and add fixNegativeZeros method
+- Updated dependencies
+  - @bschlenk/vec@0.0.7
+
 ## 0.0.9
 
 ### Patch Changes
