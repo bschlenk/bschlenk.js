@@ -222,6 +222,31 @@ export function isValid(m: Matrix): boolean {
 }
 
 /**
+ * Converts any -0 values in the given matrix to 0.
+ */
+export function fixNegativeZeros(m: Matrix) {
+  const xx = fixNegativeZero(m.xx)
+  const xy = fixNegativeZero(m.xy)
+  const yx = fixNegativeZero(m.yx)
+  const yy = fixNegativeZero(m.yy)
+  const tx = fixNegativeZero(m.tx)
+  const ty = fixNegativeZero(m.ty)
+
+  if (
+    Object.is(xx, m.xx) &&
+    Object.is(xy, m.xy) &&
+    Object.is(yx, m.yx) &&
+    Object.is(yy, m.yy) &&
+    Object.is(tx, m.tx) &&
+    Object.is(ty, m.ty)
+  ) {
+    return m
+  }
+
+  return mat(xx, xy, yx, yy, tx, ty)
+}
+
+/**
  * Generate a css transform property value from a Matrix.
  *
  * The only difference between this and `toSvg` is that the values
@@ -261,12 +286,12 @@ export function fromDomMatrix(m: DOMMatrixReadOnly): Matrix {
 
 function mult2(a: Matrix, b: Matrix): Matrix {
   return mat(
-    a.xx * b.xx + a.xy * b.yx,
-    a.xx * b.xy + a.xy * b.yy,
-    a.yx * b.xx + a.yy * b.yx,
-    a.yx * b.xy + a.yy * b.yy,
-    a.tx * b.xx + a.ty * b.yx + b.tx,
-    a.tx * b.xy + a.ty * b.yy + b.ty
+    a.xx * b.xx + a.yx * b.xy,
+    a.xy * a.xx + a.yy * b.xy,
+    a.xx * b.yx + a.yx * b.yy,
+    a.xy * b.yx + a.yy * b.yy,
+    a.xx * b.tx + a.yx * b.ty + a.tx,
+    a.xy * b.tx + a.yy * b.ty + a.ty
   )
 }
 
@@ -281,4 +306,12 @@ function transformAt(m: Matrix, centerX: number, centerY: number): Matrix {
 function roundEpsilon(value: number, epsilon = Number.EPSILON) {
   const r = Math.round(value)
   return Math.abs(value - r) < epsilon ? r : value
+}
+
+function fixNegativeZero(value: number) {
+  return isNegativeZero(value) ? 0 : value
+}
+
+function isNegativeZero(value: number) {
+  return Object.is(value, -0)
 }
