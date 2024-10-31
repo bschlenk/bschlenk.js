@@ -30,6 +30,11 @@ const base = [
           message: 'Use Uint8Array instead.',
         },
       ],
+      'object-shorthand': [
+        'error',
+        'always',
+        { avoidExplicitReturnArrows: true },
+      ],
 
       'import/first': 'error',
       'import/newline-after-import': 'error',

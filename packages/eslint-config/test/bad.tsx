@@ -72,6 +72,11 @@ function someFunction(
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+{
+  const a = 'abc'
+  const b = 'def'
+  const c = { a: a, b: b, e: () => { return 1 } }
+}
 
 someFunction('a', 'b', 6);
 

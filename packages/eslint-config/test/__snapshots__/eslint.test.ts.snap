@@ -3,10 +3,10 @@
 exports[`eslint > ... 1`] = `
 [
   {
-    "errorCount": 18,
+    "errorCount": 21,
     "fatalErrorCount": 0,
     "filePath": "bad.tsx",
-    "fixableErrorCount": 11,
+    "fixableErrorCount": 14,
     "fixableWarningCount": 0,
     "messages": [
       {
@@ -238,10 +238,61 @@ exports[`eslint > ... 1`] = `
         "severity": 2,
       },
       {
+        "column": 15,
+        "endColumn": 19,
+        "endLine": 78,
+        "fix": {
+          "range": [
+            1497,
+            1501,
+          ],
+        },
+        "line": 78,
+        "message": "Expected property shorthand.",
+        "messageId": "expectedPropertyShorthand",
+        "nodeType": "Property",
+        "ruleId": "object-shorthand",
+        "severity": 2,
+      },
+      {
+        "column": 21,
+        "endColumn": 25,
+        "endLine": 78,
+        "fix": {
+          "range": [
+            1503,
+            1507,
+          ],
+        },
+        "line": 78,
+        "message": "Expected property shorthand.",
+        "messageId": "expectedPropertyShorthand",
+        "nodeType": "Property",
+        "ruleId": "object-shorthand",
+        "severity": 2,
+      },
+      {
+        "column": 27,
+        "endColumn": 48,
+        "endLine": 78,
+        "fix": {
+          "range": [
+            1509,
+            1530,
+          ],
+        },
+        "line": 78,
+        "message": "Expected method shorthand.",
+        "messageId": "expectedMethodShorthand",
+        "nodeType": "Property",
+        "ruleId": "object-shorthand",
+        "severity": 2,
+      },
+      {
         "column": 1,
         "endColumn": 7,
-        "endLine": 86,
-        "line": 86,
+        "endLine": 91,
+        "line": 91,
         "message": "Unexpected use of 'Buffer'. Use Uint8Array instead.",
         "messageId": "customMessage",
         "nodeType": "Identifier",
@@ -251,14 +302,14 @@ exports[`eslint > ... 1`] = `
       {
         "column": 1,
         "endColumn": 32,
-        "endLine": 89,
+        "endLine": 94,
         "fix": {
           "range": [
-            1735,
-            1766,
+            1825,
+            1856,
           ],
         },
-        "line": 89,
+        "line": 94,
         "message": "Run autofix to sort these exports!",
         "messageId": "sort",
         "nodeType": null,
