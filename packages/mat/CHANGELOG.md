@@ -1,5 +1,11 @@
 # @bschlenk/mat
 
+## 0.0.11
+
+### Patch Changes
+
+- fix issue with xy value after mult
+
 ## 0.0.10
 
 ### Patch Changes
