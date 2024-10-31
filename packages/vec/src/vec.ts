@@ -237,6 +237,14 @@ export function fromPolar({ r, a }: Polar): Vector {
 }
 
 /**
+ * Get a vector from a DOMPoint object. DOMPoints are not destructurable, so
+ * it can be helpful to turn them into vectors when passing them around.
+ */
+export function fromDomPoint(pt: DOMPoint): Vector {
+  return vec(pt.x, pt.y)
+}
+
+/**
  * Get a vector from an event with `clientX` and `clientY` properties,
  * such as a PointerEvent.
  */
