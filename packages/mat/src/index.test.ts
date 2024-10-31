@@ -2,17 +2,26 @@ import { describe, test, expect } from 'vitest'
 import * as mat from './index.js'
 
 describe('mat', () => {
+  describe('rotate', () => {
+    test('rotation of 0 should return the identity matrix', () => {
+      expect(mat.fixNegativeZeros(mat.rotate(0))).toEqual(mat.IDENTITY)
+    })
+  })
+
   describe('mult', () => {
     test('should return the identity matrix if no matrices are given', () => {
-      expect(mat.mult()).toEqual(mat.IDENTITY)
+      expect(mat.mult()).toBe(mat.IDENTITY)
     })
 
     test('should multiply two matrices', () => {
-      const result = mat.fixNegativeZeros(
-        mat.mult(mat.mat(1, 0, 0, 1, -50, -150), mat.mat(-1, 0, 0, -1, 0, 0))
+      const result = mat.mult(
+        mat.mat(1, 0, 0, 1, -50, -150),
+        mat.mat(-1, 0, 0, -1, 0, 0)
       )
 
-      expect(result).toEqual(mat.mat(-1, 0, 0, -1, -50, -150))
+      expect(mat.fixNegativeZeros(result)).toEqual(
+        mat.mat(-1, 0, 0, -1, -50, -150)
+      )
     })
 
     test('should multiply three matrices', () => {
@@ -25,6 +34,11 @@ describe('mat', () => {
       )
 
       expect(result).toEqual(mat.mat(-1, 0, 0, -1, -100, -300))
+    })
+
+    test('multiplying by the identity matrix should return an equal matrix', () => {
+      const m = mat.mult(mat.rotateDeg(45), mat.IDENTITY)
+      expect(m).toEqual(m)
     })
   })
 

@@ -287,7 +287,7 @@ export function fromDomMatrix(m: DOMMatrixReadOnly): Matrix {
 function mult2(a: Matrix, b: Matrix): Matrix {
   return mat(
     a.xx * b.xx + a.yx * b.xy,
-    a.xy * a.xx + a.yy * b.xy,
+    a.xy * b.xx + a.yy * b.xy,
     a.xx * b.yx + a.yx * b.yy,
     a.xy * b.yx + a.yy * b.yy,
     a.xx * b.tx + a.yx * b.ty + a.tx,
