@@ -1,5 +1,9 @@
 import { areClose, DEG2RAD } from '@bschlenk/util'
-import type { Vector } from '@bschlenk/vec'
+
+interface Vector {
+  x: number
+  y: number
+}
 
 export interface MatrixMut {
   /** The x coordinate of the x vector. */
