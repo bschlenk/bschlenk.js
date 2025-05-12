@@ -1,3 +1,5 @@
+import module from 'node:module'
+
 import js from '@eslint/js'
 import prettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
@@ -47,8 +49,8 @@ const base = [
           groups: [
             // Side effect imports.
             ['^\\u0000'],
-            // Node.js builtins prefixed with `node:`.
-            ['^node:'],
+            // Node.js builtins.
+            ['^node:', `^(${module.builtinModules.join('|')})$`],
             // Packages (react first).
             // Things that start with a letter (or digit or underscore), or `@` followed by a letter.
             ['^react$', '^react-dom$', '^@?\\w'],
