@@ -9,10 +9,10 @@ function run() {
 
   const isTypescript = fs.existsSync('./tsconfig.json')
   const isReact =
-    pkg.dependencies['react'] ||
-    pkg.dependencies['react-dom'] ||
-    pkg.peerDependencies['react'] ||
-    pkg.peerDependencies['react-dom']
+    pkg.dependencies?.['react'] ||
+    pkg.dependencies?.['react-dom'] ||
+    pkg.peerDependencies?.['react'] ||
+    pkg.peerDependencies?.['react-dom']
 
   const types = [
     isTypescript ? 'typescript' : 'javascript',
