@@ -11,8 +11,8 @@
     "test": "pnpm -r --no-bail test"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.9",
-    "vitest": "^2.1.4"
+    "@changesets/cli": "^2.29.4",
+    "vitest": "^3.1.4"
   },
   "packageManager": "pnpm@9.4.0"
 }
