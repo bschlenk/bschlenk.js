@@ -59,7 +59,7 @@ const base = [
             ['^'],
             // Relative imports.
             // Anything that starts with a dot.
-            ['^\\.'],
+            ['^\\.\\.', '^\\.'],
             // Css imports
             ['\\.css$', '\\.module\\.css$'],
           ],
