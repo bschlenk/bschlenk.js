@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "build": "pnpm -r build",
-    "test": "pnpm -r test"
+    "test": "pnpm -r --no-bail test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
