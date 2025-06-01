@@ -11,19 +11,19 @@ export async function* iterAsync<T, U>(
   fn: (item: T) => Promise<U>
 ): AsyncGenerator<U, undefined, undefined> {
   let idx = 0
-  let running = new Array<Promise<U>>(items.length)
+  let running: Promise<U>[] = []
 
   const enqueue = async (): Promise<U> => {
     const result = await fn(items[idx++])
     if (idx < items.length) {
-      running[idx] = enqueue()
+      running.push(enqueue())
     }
     return result
   }
 
   const lim = Math.min(limit, items.length)
   for (let i = 0; i < lim; ++i) {
-    running[i] = enqueue()
+    running.push(enqueue())
   }
 
   for (const promise of running) {
