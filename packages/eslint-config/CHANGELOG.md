@@ -1,5 +1,12 @@
 # @bschlenk/eslint-config
 
+## 0.0.4
+
+### Patch Changes
+
+- fix eslint-init and sort local dir imports after other dir
+- 8f73fea: enable object-shorthand rule
+
 ## 0.0.3
 
 ### Patch Changes

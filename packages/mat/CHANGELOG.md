@@ -1,5 +1,13 @@
 # @bschlenk/mat
 
+## 0.0.12
+
+### Patch Changes
+
+- 4ae1638: remove dependency on @bschlenk/vec
+- Updated dependencies
+  - @bschlenk/util@0.0.3
+
 ## 0.0.11
 
 ### Patch Changes

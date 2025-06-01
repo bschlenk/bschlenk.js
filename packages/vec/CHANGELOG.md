@@ -1,5 +1,12 @@
 # @bschlenk/vec
 
+## 0.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  - @bschlenk/util@0.0.3
+
 ## 0.0.7
 
 ### Patch Changes
