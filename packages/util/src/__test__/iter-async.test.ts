@@ -73,6 +73,23 @@ describe('iterAsync', () => {
     expect(result.done).toBe(true)
     expect(result.value).toBeUndefined()
   })
+
+  test('should pass index to callback', async () => {
+    const indices: number[] = []
+
+    const gen = iterAsync(2, ['a', 'b', 'c'], async (_item, index) => {
+      indices.push(index)
+      return index
+    })
+
+    const results: number[] = []
+    for await (const value of gen) {
+      results.push(value)
+    }
+
+    expect(indices).toEqual([0, 1, 2])
+    expect(results).toEqual([0, 1, 2])
+  })
 })
 
 function wait(ms: number) {
