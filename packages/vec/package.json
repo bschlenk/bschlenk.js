@@ -4,6 +4,11 @@
   "author": "Brian Schlenker <bschlenk@umich.edu>",
   "description": "Functional 2d vector library",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bschlenk/bschlenk.js.git",
+    "directory": "packages/vec"
+  },
   "keywords": [
     "vector",
     "2d"
