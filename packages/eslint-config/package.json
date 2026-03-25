@@ -4,6 +4,11 @@
   "author": "Brian Schlenker <bschlenk@umich.edu>",
   "description": "My personal eslint config.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bschlenk/bschlenk.js.git",
+    "directory": "packages/eslint-config"
+  },
   "keywords": [
     "eslint",
     "eslintconfig",

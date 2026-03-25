@@ -4,6 +4,11 @@
   "author": "Brian Schlenker <bschlenk@umich.edu>",
   "description": "Functional affine transform matrix library",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bschlenk/bschlenk.js.git",
+    "directory": "packages/mat"
+  },
   "keywords": [
     "matrix",
     "affine",
