@@ -10,6 +10,20 @@ describe('iterAsync', () => {
     vi.useRealTimers()
   })
 
+  test('should pass index to callback', async () => {
+    const indices: number[] = []
+
+    const gen = iterAsync(1, ['a', 'b', 'c'], async (item, index) => {
+      indices.push(index)
+      return item
+    })
+
+    for await (const _ of gen) {
+    }
+
+    expect(indices).toEqual([0, 1, 2])
+  })
+
   test('should yield in order', async () => {
     let running = 0
 

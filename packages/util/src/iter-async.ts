@@ -8,13 +8,14 @@
 export async function* iterAsync<T, U>(
   limit: number,
   items: T[],
-  fn: (item: T) => Promise<U>
+  fn: (item: T, index: number) => Promise<U>
 ): AsyncGenerator<U, undefined, undefined> {
   let idx = 0
   let running: Promise<U>[] = []
 
   const enqueue = async (): Promise<U> => {
-    const result = await fn(items[idx++])
+    const i = idx++
+    const result = await fn(items[i], i)
     if (idx < items.length) {
       running.push(enqueue())
     }
