@@ -1,5 +1,11 @@
 # @bschlenk/util
 
+## 0.0.4
+
+### Patch Changes
+
+- iterAsync callback now receives item index
+
 ## 0.0.3
 
 ### Patch Changes
