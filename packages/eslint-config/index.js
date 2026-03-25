@@ -1,11 +1,12 @@
 import module from 'node:module'
 
 import js from '@eslint/js'
+import eslintReact from '@eslint-react/eslint-plugin'
+import stylistic from '@stylistic/eslint-plugin'
 import prettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
-import reactPlugin from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
+import unicorn from 'eslint-plugin-unicorn'
 import globals from 'globals'
 import tsEslint from 'typescript-eslint'
 
@@ -20,6 +21,7 @@ const base = [
     plugins: {
       import: importPlugin,
       'simple-import-sort': simpleImportSort,
+      unicorn,
     },
 
     rules: {
@@ -61,10 +63,14 @@ const base = [
             // Anything that starts with a dot.
             ['^\\.\\.', '^\\.'],
             // Css imports
-            ['\\.css$', '\\.module\\.css$'],
+            ['\\.css$', '\\.module\\.css$', '\\.css\\.ts$'],
           ],
         },
       ],
+
+      'unicorn/filename-case': ['error', { case: 'kebabCase' }],
+      'unicorn/prefer-import-meta-properties': 'error',
+      'unicorn/text-encoding-identifier-case': 'error',
     },
   },
 ]
@@ -101,26 +107,22 @@ const typescript = [
 ]
 
 const react = [
-  { settings: { react: { version: 'detect' } } },
-
-  reactPlugin.configs.flat.recommended,
-  reactPlugin.configs.flat['jsx-runtime'],
+  eslintReact.configs['strict-typescript'],
 
   {
-    plugins: {
-      'react-hooks': reactHooks,
-      rules: reactHooks.configs.recommended.rules,
-    },
-  },
+    plugins: { '@stylistic': stylistic },
 
-  {
     rules: {
-      'react/display-name': 'off',
-      'react/jsx-curly-brace-presence': [
+      '@eslint-react/dom/no-unknown-property': 'error',
+
+      '@stylistic/jsx-curly-brace-presence': [
         'error',
         { propElementValues: 'always' },
       ],
-      'react/self-closing-comp': ['error', { component: true, html: true }],
+      '@stylistic/jsx-self-closing-comp': [
+        'error',
+        { component: true, html: true },
+      ],
     },
   },
 

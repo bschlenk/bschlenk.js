@@ -92,3 +92,11 @@ Buffer.from('hello');
 
 // simple-import-sort/exports
 export { someFunction, Greeter}
+
+// unicorn/text-encoding-identifier-case
+// error: should be 'utf8' (no hyphen)
+fs.readFile('file.txt', 'utf-8', () => {});
+
+// unicorn/prefer-import-meta-properties
+// error: should use import.meta.dirname directly
+const dir = new URL('.', import.meta.url).pathname;
