@@ -3,10 +3,10 @@
 exports[`eslint > ... 1`] = `
 [
   {
-    "errorCount": 27,
+    "errorCount": 26,
     "fatalErrorCount": 0,
     "filePath": "bad.tsx",
-    "fixableErrorCount": 15,
+    "fixableErrorCount": 18,
     "fixableWarningCount": 0,
     "messages": [
       {
@@ -89,6 +89,22 @@ exports[`eslint > ... 1`] = `
         "line": 14,
         "message": "Unused eslint-disable directive (no problems were reported from 'eqeqeq').",
         "ruleId": null,
+        "severity": 2,
+      },
+      {
+        "column": 16,
+        "endColumn": 2,
+        "endLine": 17,
+        "fix": {
+          "range": [
+            293,
+            320,
+          ],
+        },
+        "line": 15,
+        "message": "Unnecessary { after 'if' condition.",
+        "messageId": "unexpectedCurlyAfterCondition",
+        "ruleId": "curly",
         "severity": 2,
       },
       {
@@ -297,26 +313,6 @@ exports[`eslint > ... 1`] = `
       },
       {
         "column": 1,
-        "endColumn": 12,
-        "endLine": 91,
-        "line": 91,
-        "message": "Unsafe call of a type that could not be resolved.",
-        "messageId": "errorCall",
-        "ruleId": "@typescript-eslint/no-unsafe-call",
-        "severity": 2,
-      },
-      {
-        "column": 8,
-        "endColumn": 12,
-        "endLine": 91,
-        "line": 91,
-        "message": "Unsafe member access .from on a type that cannot be resolved.",
-        "messageId": "errorMemberExpression",
-        "ruleId": "@typescript-eslint/no-unsafe-member-access",
-        "severity": 2,
-      },
-      {
-        "column": 1,
         "endColumn": 32,
         "endLine": 94,
         "fix": {
@@ -329,26 +325,6 @@ exports[`eslint > ... 1`] = `
         "message": "Run autofix to sort these exports!",
         "messageId": "sort",
         "ruleId": "simple-import-sort/exports",
-        "severity": 2,
-      },
-      {
-        "column": 1,
-        "endColumn": 12,
-        "endLine": 98,
-        "line": 98,
-        "message": "Unsafe call of a type that could not be resolved.",
-        "messageId": "errorCall",
-        "ruleId": "@typescript-eslint/no-unsafe-call",
-        "severity": 2,
-      },
-      {
-        "column": 4,
-        "endColumn": 12,
-        "endLine": 98,
-        "line": 98,
-        "message": "Unsafe member access .readFile on a type that cannot be resolved.",
-        "messageId": "errorMemberExpression",
-        "ruleId": "@typescript-eslint/no-unsafe-member-access",
         "severity": 2,
       },
       {
@@ -392,6 +368,38 @@ exports[`eslint > ... 1`] = `
             "messageId": "suggestComment",
           },
         ],
+      },
+      {
+        "column": 16,
+        "endColumn": 2,
+        "endLine": 107,
+        "fix": {
+          "range": [
+            2216,
+            2256,
+          ],
+        },
+        "line": 105,
+        "message": "Unnecessary { after 'if' condition.",
+        "messageId": "unexpectedCurlyAfterCondition",
+        "ruleId": "curly",
+        "severity": 2,
+      },
+      {
+        "column": 8,
+        "endColumn": 25,
+        "endLine": 114,
+        "fix": {
+          "range": [
+            2476,
+            2493,
+          ],
+        },
+        "line": 114,
+        "message": "Expected { after 'else'.",
+        "messageId": "missingCurlyAfter",
+        "ruleId": "curly",
+        "severity": 2,
       },
     ],
     "usedDeprecatedRules": [],

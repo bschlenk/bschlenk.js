@@ -100,3 +100,19 @@ fs.readFile('file.txt', 'utf-8', () => {});
 // unicorn/prefer-import-meta-properties
 // error: should use import.meta.dirname directly
 const dir = new URL('.', import.meta.url).pathname;
+
+// curly ('multi'): single statement bodies must not be wrapped in braces
+if (x === 200) {
+  console.log('unnecessary braces');
+}
+
+// curly ('consistent'): if the if-branch needs braces (multiple statements),
+// the else-branch must use braces too, even though it's a single statement
+if (x === 200) {
+  console.log('a');
+  console.log('b');
+} else console.log('c');
+
+// should be fine: single statement, no braces on either branch
+if (x === 200) console.log('d');
+else console.log('e');

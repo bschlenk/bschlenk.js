@@ -16,6 +16,7 @@
     "strict": true /* Enable all strict type-checking options. */,
 
     /* Completeness */
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["node"]
   }
 }

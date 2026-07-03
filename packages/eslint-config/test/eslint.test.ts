@@ -1,5 +1,6 @@
-import { ESLint } from 'eslint'
 import path from 'path'
+
+import { ESLint } from 'eslint'
 import { describe, expect, test } from 'vitest'
 
 describe('eslint', () => {
@@ -20,12 +21,11 @@ describe('eslint', () => {
       // @ts-expect-error safe to delete
       delete r.suppressedMessages
 
-      for (const m of r.messages) {
-        if ('fix' in m && m.fix && 'text' in m.fix) {
+      for (const m of r.messages)
+        if ('fix' in m && m.fix && 'text' in m.fix)
           // @ts-expect-error safe to delete
           delete m.fix.text
-        }
-      }
+
       r.filePath = path.relative(__dirname, r.filePath)
     }
     expect(results).toMatchSnapshot()
