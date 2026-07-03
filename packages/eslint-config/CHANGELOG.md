@@ -1,5 +1,11 @@
 # @bschlenk/eslint-config
 
+## 0.0.6
+
+### Patch Changes
+
+- Include curly rule and bump dependencies
+
 ## 0.0.5
 
 ### Patch Changes
