@@ -108,7 +108,7 @@ const ourReactRules = {
   plugins: { '@stylistic': stylistic },
 
   rules: {
-    '@eslint-react/dom/no-unknown-property': 'error',
+    '@eslint-react/dom-no-unknown-property': 'error',
 
     '@stylistic/jsx-curly-brace-presence': [
       'error',
