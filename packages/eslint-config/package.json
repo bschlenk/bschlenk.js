@@ -1,6 +1,6 @@
 {
   "name": "@bschlenk/eslint-config",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Brian Schlenker <bschlenk@umich.edu>",
   "description": "My personal eslint config.",
   "license": "MIT",
