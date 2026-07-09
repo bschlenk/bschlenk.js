@@ -3,10 +3,10 @@
 exports[`eslint > ... 1`] = `
 [
   {
-    "errorCount": 26,
+    "errorCount": 25,
     "fatalErrorCount": 0,
     "filePath": "bad.tsx",
-    "fixableErrorCount": 18,
+    "fixableErrorCount": 17,
     "fixableWarningCount": 0,
     "messages": [
       {
@@ -89,22 +89,6 @@ exports[`eslint > ... 1`] = `
         "line": 14,
         "message": "Unused eslint-disable directive (no problems were reported from 'eqeqeq').",
         "ruleId": null,
-        "severity": 2,
-      },
-      {
-        "column": 16,
-        "endColumn": 2,
-        "endLine": 17,
-        "fix": {
-          "range": [
-            293,
-            320,
-          ],
-        },
-        "line": 15,
-        "message": "Unnecessary { after 'if' condition.",
-        "messageId": "unexpectedCurlyAfterCondition",
-        "ruleId": "curly",
         "severity": 2,
       },
       {
@@ -370,32 +354,32 @@ exports[`eslint > ... 1`] = `
         ],
       },
       {
-        "column": 16,
-        "endColumn": 2,
-        "endLine": 107,
+        "column": 3,
+        "endColumn": 33,
+        "endLine": 108,
         "fix": {
           "range": [
-            2216,
-            2256,
+            2361,
+            2391,
           ],
         },
-        "line": 105,
-        "message": "Unnecessary { after 'if' condition.",
-        "messageId": "unexpectedCurlyAfterCondition",
+        "line": 108,
+        "message": "Expected { after 'if' condition.",
+        "messageId": "missingCurlyAfterCondition",
         "ruleId": "curly",
         "severity": 2,
       },
       {
         "column": 8,
         "endColumn": 25,
-        "endLine": 114,
+        "endLine": 120,
         "fix": {
           "range": [
-            2476,
-            2493,
+            2743,
+            2760,
           ],
         },
-        "line": 114,
+        "line": 120,
         "message": "Expected { after 'else'.",
         "messageId": "missingCurlyAfter",
         "ruleId": "curly",

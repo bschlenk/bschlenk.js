@@ -38,7 +38,7 @@ const base = [
 // recommended/plugin configs above.
 const ourRules = {
   rules: {
-    curly: ['error', 'multi', 'consistent'],
+    curly: ['error', 'multi-line', 'consistent'],
     eqeqeq: ['error', 'smart'],
     'no-restricted-globals': [
       'error',

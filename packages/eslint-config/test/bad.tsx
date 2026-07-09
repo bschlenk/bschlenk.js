@@ -101,9 +101,15 @@ fs.readFile('file.txt', 'utf-8', () => {});
 // error: should use import.meta.dirname directly
 const dir = new URL('.', import.meta.url).pathname;
 
-// curly ('multi'): single statement bodies must not be wrapped in braces
+// curly ('multi-line'): a single statement body on its own line must be
+// wrapped in braces (this is the case that regressed when we had 'multi'
+// instead of 'multi-line' -- 'multi' would flag this as unnecessary)
+if (x === 200)
+  console.log('missing braces');
+
+// should be fine: single statement body on its own line, already braced
 if (x === 200) {
-  console.log('unnecessary braces');
+  console.log('braces are fine here');
 }
 
 // curly ('consistent'): if the if-branch needs braces (multiple statements),
@@ -113,6 +119,7 @@ if (x === 200) {
   console.log('b');
 } else console.log('c');
 
-// should be fine: single statement, no braces on either branch
+// should be fine: single statement, no braces on either branch, both
+// on the same line as their if/else keyword
 if (x === 200) console.log('d');
 else console.log('e');
