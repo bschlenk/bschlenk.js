@@ -29,24 +29,43 @@ describe('vec', () => {
     })
   })
 
-  describe('arithmetic', () => {
+  describe('scale', () => {
     test('scales a vector without changing the input', () => {
       const input = vec.vec(2, -3)
       expect(vec.scale(input, -2)).toEqual(vec.vec(-4, 6))
       expect(input).toEqual(vec.vec(2, -3))
     })
+  })
 
-    test('adds and subtracts vectors', () => {
+  describe('add', () => {
+    test('adds two vectors', () => {
       expect(vec.add(vec.vec(2, -3), vec.vec(-5, 7))).toEqual(vec.vec(-3, 4))
-      expect(vec.subtract(vec.vec(2, -3), vec.vec(-5, 7))).toEqual(vec.vec(7, -10))
     })
+  })
 
+  describe('addTo', () => {
     test('addTo mutates only the first vector', () => {
       const target = vec.vec(2, -3)
       const addition = vec.vec(-5, 7)
       expect(vec.addTo(target, addition)).toBeUndefined()
       expect(target).toEqual(vec.vec(-3, 4))
       expect(addition).toEqual(vec.vec(-5, 7))
+    })
+  })
+
+  describe('subtract', () => {
+    test('subtracts one vector from another', () => {
+      expect(vec.subtract(vec.vec(2, -3), vec.vec(-5, 7))).toEqual(
+        vec.vec(7, -10)
+      )
+    })
+  })
+
+  describe('cross', () => {
+    test('computes the signed 2D cross product', () => {
+      expect(vec.cross(vec.vec(2, 3), vec.vec(4, -1))).toBe(-14)
+      expect(vec.cross(vec.vec(4, -1), vec.vec(2, 3))).toBe(14)
+      expect(vec.cross(vec.vec(2, 3), vec.vec(2, 3))).toBe(0)
     })
   })
 
