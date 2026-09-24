@@ -144,4 +144,27 @@ const react = [
   ourReactRules,
 ]
 
-export default { configs: { javascript, typescript, react } }
+const browser = [
+  {
+    languageOptions: { globals: globals.browser },
+  },
+]
+
+const node = [
+  {
+    languageOptions: { globals: globals.node },
+    rules: {
+      'no-console': 'error',
+    },
+  },
+]
+
+const cli = [
+  {
+    languageOptions: { globals: globals.node },
+  },
+]
+
+export default {
+  configs: { javascript, typescript, react, browser, node, cli },
+}

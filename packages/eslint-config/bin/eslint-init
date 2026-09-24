@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
-import fs from 'fs'
+import fs from 'node:fs'
+import { parseArgs } from 'node:util'
 
 run()
 
 function run() {
+  const type = parseType()
   const pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
 
   const isTypescript = fs.existsSync('./tsconfig.json')
@@ -22,6 +24,7 @@ function run() {
   const fileGlobs = makeFileGlobs(isTypescript, isReact)
 
   console.log(`Detected: ${types.join(', ')}`)
+  console.log(`Type: ${type}`)
   console.log('Writing eslint.config.js')
 
   const config = `\
@@ -39,18 +42,49 @@ ${
       parserOptions: { project: './tsconfig.json' },\n`
     : ''
 }\
-      globals: { ...globals.browser, ...globals.es2022 },
+      globals: { ...globals.es2022 },
     },
   },
 
   ...${
     isTypescript ? 'bschlenk.configs.typescript' : 'bschlenk.configs.javascript'
   },
-${isReact ? '  ...bschlenk.configs.react' : ''}\
+  ...bschlenk.configs.${type},
+${isReact ? '  ...bschlenk.configs.react,\n' : ''}\
 ]
 `
 
   fs.writeFileSync('./eslint.config.js', config)
+}
+
+function parseType() {
+  const valid = ['browser', 'node', 'cli']
+  let type
+
+  try {
+    type = parseArgs({
+      options: { type: { type: 'string' } },
+    }).values.type
+  } catch (error) {
+    if (error.code === 'ERR_PARSE_ARGS_INVALID_OPTION_VALUE') {
+      console.error(`Type is required. Valid options: ${valid.join(', ')}`)
+      process.exit(1)
+    }
+
+    console.error(`${error.message}. Valid options: ${valid.join(', ')}`)
+    process.exit(1)
+  }
+
+  if (!type) {
+    console.error(`Type is required. Valid options: ${valid.join(', ')}`)
+    process.exit(1)
+  }
+
+  if (!valid.includes(type)) {
+    console.error(`Invalid type "${type}". Valid options: ${valid.join(', ')}`)
+    process.exit(1)
+  }
+  return type
 }
 
 function makeFileGlobs(isTypescript, isReact) {
