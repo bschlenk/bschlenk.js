@@ -3,7 +3,7 @@ import path from 'node:path'
 import bschlenk, { globals } from '../index.js'
 
 export default [
-  { files: ['./bad.tsx'] },
+  { files: ['./bad-cli.ts'] },
 
   {
     languageOptions: {
@@ -15,6 +15,5 @@ export default [
   },
 
   ...bschlenk.configs.typescript,
-  ...bschlenk.configs.browser,
-  ...bschlenk.configs.react,
+  ...bschlenk.configs.cli,
 ]

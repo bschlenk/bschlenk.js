@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`eslint > ... 1`] = `
+exports[`eslint > browser config 1`] = `
 [
   {
     "errorCount": 25,
