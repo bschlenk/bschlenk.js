@@ -65,6 +65,15 @@ export function subtract(a: Vector, b: Vector) {
   return vec(a.x - b.x, a.y - b.y)
 }
 
+/**
+ * Computes the signed area of the parallelogram formed by two 2D vectors.
+ * The result is zero when the vectors are parallel, positive when `b` is
+ * counterclockwise from `a`, and negative when it is clockwise.
+ */
+export function cross(a: Vector, b: Vector) {
+  return a.x * b.y - a.y * b.x
+}
+
 /** Computes the magnitude, or length, of the given vector. */
 export function magnitude(vec: Vector) {
   return Math.hypot(vec.x, vec.y)
@@ -121,12 +130,12 @@ export function intersect(
 ): Vector | null {
   const a = subtract(p2, p1)
   const b = subtract(p4, p3)
-  const denominator = a.x * b.y - a.y * b.x
+  const denominator = cross(a, b)
 
   if (denominator === 0) return null
 
   const offset = subtract(p3, p1)
-  const distanceAlongA = (offset.x * b.y - offset.y * b.x) / denominator
+  const distanceAlongA = cross(offset, b) / denominator
   return add(p1, scale(a, distanceAlongA))
 }
 
