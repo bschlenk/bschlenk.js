@@ -119,18 +119,15 @@ export function intersect(
   p3: Vector,
   p4: Vector
 ): Vector | null {
-  const l1 = slopeIntercept(p1, p2)
-  const l2 = slopeIntercept(p3, p4)
+  const a = subtract(p2, p1)
+  const b = subtract(p4, p3)
+  const denominator = a.x * b.y - a.y * b.x
 
-  if (l1.m === l2.m) return null
+  if (denominator === 0) return null
 
-  // Set the two equations equal to each other and solve for x.
-  const x = (l2.b - l1.b) / (l1.m - l2.m)
-
-  // Plug the x value back into either line equation.
-  const y = evaluate(l1, x)
-
-  return vec(x, y)
+  const offset = subtract(p3, p1)
+  const distanceAlongA = (offset.x * b.y - offset.y * b.x) / denominator
+  return add(p1, scale(a, distanceAlongA))
 }
 
 /**
