@@ -4,7 +4,8 @@ import js from '@eslint/js'
 import eslintReact from '@eslint-react/eslint-plugin'
 import stylistic from '@stylistic/eslint-plugin'
 import prettier from 'eslint-config-prettier'
-import importPlugin from 'eslint-plugin-import'
+import importPlugin from 'eslint-plugin-import-lite'
+import reactHooks from 'eslint-plugin-react-hooks'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import unicorn from 'eslint-plugin-unicorn'
 import globals from 'globals'
@@ -138,6 +139,24 @@ const react = [
   basePlugins,
 
   eslintReact.configs['strict-typescript'],
+  reactHooks.configs.flat.recommended,
+
+  {
+    rules: {
+      // The React Hooks preset handles these checks.
+      '@eslint-react/error-boundaries': 'off',
+      '@eslint-react/exhaustive-deps': 'off',
+      '@eslint-react/purity': 'off',
+      '@eslint-react/rules-of-hooks': 'off',
+      '@eslint-react/set-state-in-effect': 'off',
+      '@eslint-react/set-state-in-render': 'off',
+      '@eslint-react/static-components': 'off',
+      '@eslint-react/unsupported-syntax': 'off',
+      '@eslint-react/use-memo': 'off',
+
+      '@eslint-react/dom-no-unsafe-target-blank': 'error',
+    },
+  },
 
   prettier,
   ourRules,

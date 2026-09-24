@@ -2,6 +2,10 @@ packages:
   - 'packages/*'
 allowBuilds:
   esbuild: true
+
+catalog:
+  typescript: ^7.0.2
+
 minimumReleaseAgeExclude:
   - '@eslint-react/ast@5.10.2'
   - '@eslint-react/core@5.10.2'
@@ -16,3 +20,5 @@ minimumReleaseAgeExclude:
   - eslint-plugin-react-rsc@5.10.2
   - eslint-plugin-react-web-api@5.10.2
   - eslint-plugin-react-x@5.10.2
+  - caniuse-lite@1.0.30001812
+  - vite@8.3.1
