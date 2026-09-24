@@ -3,10 +3,10 @@
 exports[`eslint > browser config 1`] = `
 [
   {
-    "errorCount": 21,
+    "errorCount": 25,
     "fatalErrorCount": 0,
     "filePath": "bad.tsx",
-    "fixableErrorCount": 14,
+    "fixableErrorCount": 17,
     "fixableWarningCount": 0,
     "messages": [
       {
@@ -312,6 +312,80 @@ exports[`eslint > browser config 1`] = `
         "message": "Run autofix to sort these exports!",
         "messageId": "sort",
         "ruleId": "simple-import-sort/exports",
+        "severity": 2,
+      },
+      {
+        "column": 25,
+        "endColumn": 32,
+        "endLine": 98,
+        "fix": {
+          "range": [
+            1963,
+            1968,
+          ],
+        },
+        "line": 98,
+        "message": "Prefer \`utf8\` over \`utf-8\`.",
+        "messageId": "text-encoding-identifier/error",
+        "ruleId": "unicorn/text-encoding-identifier-case",
+        "severity": 2,
+      },
+      {
+        "column": 40,
+        "endColumn": 42,
+        "endLine": 98,
+        "line": 98,
+        "message": "Unexpected empty arrow function.",
+        "messageId": "unexpected",
+        "ruleId": "@typescript-eslint/no-empty-function",
+        "severity": 2,
+        "suggestions": [
+          {
+            "data": {
+              "name": "arrow function",
+            },
+            "desc": "Add comment inside empty arrow function.",
+            "fix": {
+              "range": [
+                1978,
+                1978,
+              ],
+              "text": " /* empty */ ",
+            },
+            "messageId": "suggestComment",
+          },
+        ],
+      },
+      {
+        "column": 3,
+        "endColumn": 33,
+        "endLine": 108,
+        "fix": {
+          "range": [
+            2361,
+            2391,
+          ],
+        },
+        "line": 108,
+        "message": "Expected { after 'if' condition.",
+        "messageId": "missingCurlyAfterCondition",
+        "ruleId": "curly",
+        "severity": 2,
+      },
+      {
+        "column": 8,
+        "endColumn": 25,
+        "endLine": 120,
+        "fix": {
+          "range": [
+            2743,
+            2760,
+          ],
+        },
+        "line": 120,
+        "message": "Expected { after 'else'.",
+        "messageId": "missingCurlyAfter",
+        "ruleId": "curly",
         "severity": 2,
       },
     ],
