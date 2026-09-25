@@ -1,5 +1,11 @@
 # @bschlenk/vec
 
+## 0.0.10
+
+### Patch Changes
+
+- Export the signed 2D cross product and fix intersections involving vertical lines.
+
 ## 0.0.9
 
 ### Patch Changes
