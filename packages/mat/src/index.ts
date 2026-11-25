@@ -112,6 +112,43 @@ export function scaleAt(x: number, y: number, cx: number, cy: number): Matrix {
 }
 
 /**
+ * Create a new matrix that skews by the given angles, in radians, like CSS
+ * `skew()`: `x` slants the y axis along x, and `y` slants the x axis along
+ * y. The second argument can be omitted to only skew along x.
+ */
+export function skew(x: number, y = 0): Matrix {
+  return mat(1, Math.tan(y), Math.tan(x), 1, 0, 0)
+}
+
+/**
+ * Create a new matrix that skews by the given angles, in degrees.
+ */
+export function skewDeg(x: number, y = 0): Matrix {
+  return skew(x * DEG2RAD, y * DEG2RAD)
+}
+
+/**
+ * Create a new matrix that skews by the given angles, in radians, around
+ * the given point.
+ */
+export function skewAt(x: number, y: number, cx: number, cy: number): Matrix {
+  return transformAt(skew(x, y), cx, cy)
+}
+
+/**
+ * Create a new matrix that skews by the given angles, in degrees, around
+ * the given point.
+ */
+export function skewDegAt(
+  x: number,
+  y: number,
+  cx: number,
+  cy: number
+): Matrix {
+  return skewAt(x * DEG2RAD, y * DEG2RAD, cx, cy)
+}
+
+/**
  * Multiply an arbitrary number of matrices together.
  */
 export function mult(...matrices: Matrix[]): Matrix {
