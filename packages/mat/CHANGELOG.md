@@ -1,5 +1,11 @@
 # @bschlenk/mat
 
+## 0.0.14
+
+### Patch Changes
+
+- 4eab244: add skew, skewDeg, skewAt and skewDegAt
+
 ## 0.0.13
 
 ### Patch Changes
