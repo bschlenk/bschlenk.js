@@ -8,6 +8,30 @@ describe('mat', () => {
     })
   })
 
+  describe('skew', () => {
+    test('skew of 0 should return the identity matrix', () => {
+      expect(mat.skew(0, 0)).toEqual(mat.IDENTITY)
+    })
+
+    test('x slants the y axis along x, like CSS skewX', () => {
+      const m = mat.skewDeg(45)
+      expectPoint(mat.transformPoint(m, { x: 0, y: 1 }), 1, 1)
+      expectPoint(mat.transformPoint(m, { x: 1, y: 0 }), 1, 0)
+    })
+
+    test('y slants the x axis along y, like CSS skewY', () => {
+      const m = mat.skewDeg(0, 45)
+      expectPoint(mat.transformPoint(m, { x: 1, y: 0 }), 1, 1)
+      expectPoint(mat.transformPoint(m, { x: 0, y: 1 }), 0, 1)
+    })
+
+    test('skewAt leaves the center point in place', () => {
+      const m = mat.skewDegAt(45, 0, 10, 20)
+      expectPoint(mat.transformPoint(m, { x: 10, y: 20 }), 10, 20)
+      expectPoint(mat.transformPoint(m, { x: 10, y: 21 }), 11, 21)
+    })
+  })
+
   describe('mult', () => {
     test('should return the identity matrix if no matrices are given', () => {
       expect(mat.mult()).toBe(mat.IDENTITY)
@@ -66,3 +90,8 @@ describe('mat', () => {
     })
   })
 })
+
+function expectPoint(p: { x: number; y: number }, x: number, y: number) {
+  expect(p.x).toBeCloseTo(x, 10)
+  expect(p.y).toBeCloseTo(y, 10)
+}
